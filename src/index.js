@@ -9,7 +9,7 @@ import {
 import { clearAllCompletedTasks } from './modules/Completed.js';
 
 const newTodolistInput = document.querySelector('#add-to-do > input');
-const addTaskButton = document.querySelector('#add-btn');
+const addTaskButton = document.querySelector('#add-task-button');
 const clearCompletedTasksButton = document.querySelector('#btn-Clear-completed-todos');
 
 newTodolistInput.addEventListener('keyup', (e) => {
