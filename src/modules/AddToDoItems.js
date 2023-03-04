@@ -41,7 +41,7 @@ const updateTask = (task) => {
 };
 
 const resetToDoList = () => {
-  const taskListItems = document.querySelectorAll('#todo-list > li');
+  const taskListItems = document.querySelectorAll('#add-btn > li');
   taskListItems.forEach((listItem, index) => {
     listItem.style.backgroundColor = '';
 
@@ -65,7 +65,7 @@ const resetToDoList = () => {
 };
 
 const showTasks = () => {
-  const todoList = document.querySelector('#todo-list');
+  const todoList = document.querySelector('#add-btn');
   todoList.innerHTML = '';
   tasks.forEach((task) => {
     const listItem = document.createElement('li');

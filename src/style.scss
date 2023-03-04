@@ -45,7 +45,7 @@ body {
   font-family: sans-serif;
 }
 
-#todo-container {
+#tododiv {
   width: 85%;
   max-width: 500px;
   height: max-content;
@@ -142,7 +142,7 @@ body {
   }
 }
 
-#header-part {
+#header-div {
   padding: 20px;
   display: flex;
   justify-content: space-between;
@@ -151,7 +151,7 @@ body {
   font-size: 18px;
 }
 
-#add-to-do {
+#add-list {
   padding: 10px 20px;
   display: flex;
   align-items: center;
