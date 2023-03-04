@@ -1,34 +1,34 @@
 import { setTaskAsComplete, setTaskAsIncomplete } from './Completed.js';
 
-let jobs;
+let tasks;
 
-const listItem = () => jobs;
+const GetToDoList = () => tasks;
 
-// function to set jobs to an array
-const setjobs = (newjobs) => {
-  jobs = newjobs;
+// function to set tasks to an array
+const setTasks = (newTasks) => {
+  tasks = newTasks;
 };
 
 const updateLocalStorage = () => {
-  localStorage.setItem('jobs', JSON.stringify(jobs));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 const AddToDoList = (input) => {
   if (input.value.trim().length === 0) return;
-  jobs.push({
+  tasks.push({
     description: input.value.trim(),
     completed: false,
-    index: jobs.length + 1,
+    index: tasks.length + 1,
   });
   input.value = '';
   updateLocalStorage();
 };
 
-const removJob = (index) => {
-  jobs = jobs.filter((task) => task.index !== index);
+const removeTask = (index) => {
+  tasks = tasks.filter((task) => task.index !== index);
 
   // Update remaining task indices
-  jobs.forEach((task, idx) => {
+  tasks.forEach((task, idx) => {
     task.index = idx + 1;
   });
 
@@ -36,21 +36,21 @@ const removJob = (index) => {
 };
 
 const updateTask = (task) => {
-  jobs[task.index - 1].description = task.description;
+  tasks[task.index - 1].description = task.description;
   updateLocalStorage();
 };
 
 const resetToDoList = () => {
-  const taskListItems = document.querySelectorAll('#todos > li');
+  const taskListItems = document.querySelectorAll('#todo-list > li');
   taskListItems.forEach((listItem, index) => {
     listItem.style.backgroundColor = '';
 
     const taskDescription = document.createElement('span');
-    taskDescription.innerText = jobs[index].description;
+    taskDescription.innerText = tasks[index].description;
     taskDescription.classList.add('task-description');
-    if (jobs[index].completed) {
+    if (tasks[index].completed) {
       taskDescription.style.textDecoration = 'line-through';
-      taskDescription.style.color = '#e7dad2';
+      taskDescription.style.color = '#e7fad2';
     }
 
     const checkBox = listItem.children[0];
@@ -64,10 +64,10 @@ const resetToDoList = () => {
   });
 };
 
-const showjobs = () => {
-  const todoList = document.querySelector('#todos');
+const showTasks = () => {
+  const todoList = document.querySelector('#todo-list');
   todoList.innerHTML = '';
-  jobs.forEach((task) => {
+  tasks.forEach((task) => {
     const listItem = document.createElement('li');
     const checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
@@ -101,8 +101,8 @@ const showjobs = () => {
 
     handle.addEventListener('click', () => {
       if (handle.innerText === 'delete') {
-        removJob(task.index);
-        showjobs();
+        removeTask(task.index);
+        showTasks();
         return;
       }
 
@@ -148,9 +148,9 @@ const showjobs = () => {
 };
 
 export {
-  listItem,
-  setjobs,
+  GetToDoList,
+  setTasks,
   AddToDoList,
-  showjobs,
+  showTasks,
   updateLocalStorage,
 };
